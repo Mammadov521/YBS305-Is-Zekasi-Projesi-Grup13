@@ -54,6 +54,8 @@ Bu projeyi yerelinizde (local) çalıştırmak için aşağıdaki adımları izl
   
 İş Zekası Ödevi Görev Dağılımı
 Kişi / Rol	Sorumluluklar & Görevler
+
+
 Rahman Mammadov: Veri Kaynakları ve Veri Seti Hazırlığı
 Kaggle ("Supermarket Sales Data", "Online Retail") referanslarıyla perakende_satis.csv, musteri.csv ve sepet.csv temel omurga dosyalarını hazırladı. TÜİK (ADNKS) ve İBB Açık Veri Portalı metriklerini analiz edip projeye katma değer sağlayan ilce_demografi.csv dosyasını yönergedeki "dış kaynak" şartına uygun olarak sentezledi ve ana data klasörünü oluşturdu.
 
