@@ -4,6 +4,7 @@
 Bu projenin temel amacı, veriyle gerçek bir iş problemini uçtan uca çözen, çalışan bir analitik ürün kurmaktır. Sadece teorik kavramlar değil, bir veri ekibinin iş süreçleri küçük ölçekte baştan sona simüle edilmiştir. 
 **Çözülen İş Problemi:** İstanbul ilçelerindeki demografik yapı ve gelir durumunun perakende satışlarına olan etkisinin incelenmesi ve lokasyon bazlı satış stratejileri için karar destek mekanizması sunulmasıdır.
 
+
 ## Veri Kaynakları
 Bu projede kullanılan veriler, yönergelere uygun olarak bir temel veri seti ve zenginleştirici dış kaynaklardan (açık veri portalları) derlenmiştir:
 1. **Temel Omurga Verisi (NovaPerakende):** Projenin temelini oluşturan `perakende_satis.csv`, `musteri.csv` ve `sepet.csv` dosyaları, Kaggle'daki "Supermarket Sales Data" ve "Online Retail" veri setlerinden ilham alınarak İstanbul demografisine uyarlanmış ve sentetik olarak türetilmiştir (Eğitmen onaylı alternatif veri kuralı kapsamında)..
@@ -52,35 +53,25 @@ Bu projeyi yerelinizde (local) çalıştırmak için aşağıdaki adımları izl
 * **Ad Soyad:** Rahman Mammadov - **Öğrenci No:** [030423056] = blacksungur13@gmail.com = https://github.com/Mammadov521/YBS305-Is-Zekasi-Projesi-Grup13/settings/access
   
 İş Zekası Ödevi Görev Dağılımı
-1. Kişi: Rahman Mammadov: Rol	Sorumluluklar & Görevler : Proje Yöneticisi & Veri Hazırlama Uzmanı	
-• Proje planının (Gantt şeması, zaman çizelgesi) ve kapsamın yönetilmesi
+Kişi / Rol	Sorumluluklar & Görevler
+Rahman Mammadov: Veri Kaynakları ve Veri Seti Hazırlığı
+Kaggle ("Supermarket Sales Data", "Online Retail") referanslarıyla perakende_satis.csv, musteri.csv ve sepet.csv temel omurga dosyalarını hazırladı. TÜİK (ADNKS) ve İBB Açık Veri Portalı metriklerini analiz edip projeye katma değer sağlayan ilce_demografi.csv dosyasını yönergedeki "dış kaynak" şartına uygun olarak sentezledi ve ana data klasörünü oluşturdu.
 
 
-• Veri setinin incelenmesi, eksik/hatalı verilerin temizlenmesi (Data Cleansing)
+​Ahmet Nihat Sami Badem: Veri Ambarı Kurulumu ve Staging (ETL) Katmanı
+dbt-duckdb adaptörünü kurup nova_dbt projesini başlattı. Ham CSV dosyalarını DuckDB analitik veritabanına bağlayarak, verileri temizleyen ve ön işlemesini yapan models/staging katmanındaki 4 adet temel SQL görünümünü (view) yazdı.
 
 
-• Raporun genel koordinasyonu ve entegrasyonu
-
-2. Kişi: Ahmet Ertan: Veri Modelleme & ETL Mimarı	
-• Veri ambarı mimarisinin ve boyutsal modellemenin (Yıldız/Kar Tanesi şeması) tasarlanması
+​Emir Can Akıncı: Marts Katmanı ve Veri Kalitesi (Testler)
+Staging'den gelen ön işlemesi yapılmış verileri SQL ile (JOIN işlemleri vb.) birleştirerek models/marts klasörü altındaki nihai iş zekası tablosunu (fct_satis_analizi) kurdu. Yönergedeki test zorunluluğunu karşılamak için schema.yml dosyasını oluşturdu ve içine 5 farklı dbt veri kalitesi testi (unique, not_null, accepted_values) yazarak veri hattını doğruladı.
 
 
-• Veri tabanı tablolarının oluşturulması, ilişkilerin kurulması ve ETL (Extract, Transform, Load) süreçlerinin yürütülmesi
-
-3. Kişi: Emircan: İleri Düzey Analiz & İstatistik Uzmanı	
-• SPSS veya SQL kullanarak ileri düzey istatistiksel analizlerin (t-testi, ANOVA vb.) ve veri madenciliği sorgularının yapılması
+​Ahmet Yasir Ertan: Power BI Görselleştirme ve Dashboard Tasarımı
+dbt'den çıkan nihai analiz verisini dışa aktarıp Power BI Desktop'a bağladı. Yönergedeki "1 filtre, en az 3 KPI, en az 3 görsel" kuralına göre; sol panele "İlçe" dilimleyicisi, üst panele 3 KPI kartı (Toplam Satış, Toplam Adet, Ortalama Satış) ve ekran genişliğine 3 farklı analiz grafiğini (lokasyon bazlı sütun, gelir durumu çubuk, kategori halka) yerleştirerek YBS305_Proje_Dashboard.pbix dosyasını tasarladı.
 
 
-• Analiz sonuçlarının yorumlanması ve bulguların rapora aktarılması
-
-4. Kişi: Sami Badem: Görselleştirştirme & Raporlama Uzmanı	
-• Power BI, Tableau veya benzeri bir araç üzerinde interaktif dashboard'ların (panoların) tasarlanması
-
-
-• Veri hikayeleştirme ilkelerine uygun olarak grafik ve KPI gösterimlerinin oluşturulması
-
-5. Kişi: Bahtgül Jailaubai: Kalite Kontrol, Dokümantasyon & Sunum Sorumlusu	
-• Hazırlanan raporun yazım dili, akademik format ve biçimlendirme kurallarına göre düzenlenmesi
+​Bakhytgul Jailaubai: Dokümantasyon, dbt Docs ve GitHub Yönetimi
+dbt docs generate komutuyla projenin otomatik veri sözlüğünü ve veri soy ağacını oluşturdu. Ana kök dizinde yer alan detaylı README.md dosyasını (proje özeti, veri kaynakları referans linkleri, teknoloji yığını ve çalıştırma talimatları) yazdı. GitHub'da YBS305-Is-Zekasi-Projesi-Grup13 isimli public (herkese açık) depoyu açarak tüm klasör mimarisini (.pbix, data, nova_dbt ve README) sisteme yükledi
 
 
 • Son kontrollerin yapılması, kaynakçanın hazırlanması ve final sunum slaytlarının tasarlanması
